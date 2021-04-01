@@ -35,4 +35,16 @@
             android:id="@+id/action_profileFragment_to_navigation_home2"
             app:destination="@id/navigation_home" />
     </fragment>
+    <fragment
+        android:id="@+id/boardFragment"
+        android:name="com.example.lesson22.ui.onBoard.BoardFragment"
+        android:label="fragment_board"
+        tools:layout="@layout/fragment_board" />
+    <fragment
+        android:id="@+id/imageFragment"
+        android:name="com.example.lesson22.ui.image.ImageFragment"
+        android:label="fragment_image"
+        tools:layout="@layout/fragment_image" />
+
+
 </navigation>

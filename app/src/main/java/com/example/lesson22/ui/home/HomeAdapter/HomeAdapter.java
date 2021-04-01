@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -33,7 +34,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeViewHolder
     public void onBindViewHolder(@NonNull HomeViewHolder holder, int position) {
         holder.onBind(list.get(position), listen);
         if (position % 2 == 0) {
-            binding.holderItem.setBackgroundColor(Color.CYAN);
+            binding.holderItem.setBackgroundColor(Color.GREEN);
         } else {
             binding.holderItem.setBackgroundColor(Color.YELLOW);
         }
@@ -78,9 +79,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeViewHolder
             binding.numberItem.setText(homeModel.getNumber());
             binding.date.setText(homeModel.getDate());
 
-            binding.getRoot().setOnClickListener(v -> {
-                listen.setDataForForm(homeModel, getAdapterPosition());
-            });
+            binding.getRoot().setOnClickListener(v -> listen.setDataForForm(homeModel, getAdapterPosition()));
 
             binding.getRoot().setOnLongClickListener(v -> {
                 AlertDialog.Builder adg = new AlertDialog.Builder(binding.getRoot().getContext());
@@ -95,6 +94,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeViewHolder
                     }
                 });
                 adg.setNegativeButton(negative, null);
+
                 adg.show();
                 return true;
             });
