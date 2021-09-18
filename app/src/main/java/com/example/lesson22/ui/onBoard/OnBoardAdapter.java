@@ -10,12 +10,15 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.example.lesson22.R;
 import com.example.lesson22.databinding.ItemForViewPagerBinding;
 
 public class OnBoardAdapter extends RecyclerView.Adapter<OnBoardAdapter.ViewHolder> {
-    int[] image = {
-            R.drawable.g, R.drawable.g, R.drawable.g};
+
+
+    private int[] lottie = new int[]{
+            R.raw.taxi, R.raw.animate_one, R.raw.animate_one};
 
     public OnBoardAdapter() {
 
@@ -51,28 +54,27 @@ public class OnBoardAdapter extends RecyclerView.Adapter<OnBoardAdapter.ViewHold
 
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        ImageView imageVie;
-        Button btnSkip,btnStart;
+        LottieAnimationView lottieAnimationView;
+        Button btnStart;
+
+
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            imageVie = itemView.findViewById(R.id.image_view);
-            btnSkip = itemView.findViewById(R.id.btnSkip);
+            lottieAnimationView = itemView.findViewById(R.id.lottie);
             btnStart = itemView.findViewById(R.id.btnStart);
+//            lottieAnimationView.playAnimation();
         }
 
 
         public void onBind(int position) {
-            imageVie.setImageResource(image[position]);
+            lottieAnimationView.setAnimation(lottie[position]);
             if (position==2){
-                btnSkip.setVisibility(View.GONE);
+                btnStart.setVisibility(View.VISIBLE);
             }
-            if (position!=2){
+            else {
                 btnStart.setVisibility(View.GONE);
             }
-            btnSkip.setOnClickListener(v -> {
-              setOnClickListener.onClicker();
-            });
             btnStart.setOnClickListener(v -> {
                 setOnClickListener.onClick();
             });

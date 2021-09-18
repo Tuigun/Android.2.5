@@ -29,7 +29,9 @@ private FragmentBoardBinding boardBinding;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_board, container, false);
+        boardBinding = FragmentBoardBinding.inflate(inflater, container, false);
+        View view = boardBinding.getRoot();
+        return view;
 
     }
 
@@ -42,13 +44,23 @@ private FragmentBoardBinding boardBinding;
         viewPager2.setAdapter(adapter);
         indicator.setViewPager2(viewPager2);
         ViewPager2.PageTransformer transformer;
-
+        boardBinding.btnNext.setOnClickListener(v -> {
+            openMain();
+        });
+        boardBinding.viewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                super.onPageScrolled(position, positionOffset, positionOffsetPixels);
+                if (position==2){
+                    boardBinding.btnNext.setVisibility(View.GONE);
+                }else boardBinding.btnNext.setVisibility(View.VISIBLE);
+            }
+        });
 
         adapter.setOnStart(new OnBoardAdapter.OnStartListener() {
             @Override
             public void onClick() {
-                NavController navController= Navigation.findNavController(getActivity(),R.id.nav_host_fragment);
-                navController.navigateUp();
+               openMain();
             }
 
             @Override
@@ -57,5 +69,12 @@ private FragmentBoardBinding boardBinding;
 
             }
         });
+
+
+    }
+
+    private void openMain() {
+        NavController navController= Navigation.findNavController(getActivity(),R.id.nav_host_fragment);
+        navController.navigateUp();
     }
 }

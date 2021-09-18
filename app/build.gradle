@@ -49,5 +49,7 @@ dependencies {
     //For Dots animation
     implementation 'com.tbuonomo.andrui:viewpagerdotsindicator:4.1.2'
 
+    //lottie
+    implementation "com.airbnb.android:lottie:4.1.0"
 
 }
